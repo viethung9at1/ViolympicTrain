@@ -11,7 +11,7 @@ export class NumberChoose extends Component {
         this.getButton()
     }
     async getButton() {
-        const btnArr = await fetch("numberchoose")
+        const btnArr = await fetch("numberchoose/49")
         const arrJSon = await btnArr.json()
         this.setState({ buttonArray: arrJSon, loading: false })
     }
@@ -27,7 +27,10 @@ export class NumberChoose extends Component {
             ? <p><em>Loading...</em></p>
             : NumberChoose.renderTable(this.state.buttonArray)
         return (
-            <div>{contents}</div>
+            <div>
+                <h1>Choose the number from smallest to the biggest</h1>
+                {contents}
+            </div>
         )
     }
 }
