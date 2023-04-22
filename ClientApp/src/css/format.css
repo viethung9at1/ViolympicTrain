@@ -1,0 +1,16 @@
+.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell {
+    width: 110px;
+    height: 110px;
+    text-align: center;
+}
+.login{
+    width: 100%;
+    text-align: center;
+}
+
