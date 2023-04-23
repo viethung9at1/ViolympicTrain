@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../css/format.css"
-export class NumberChoose extends Component {
-    static displayName = NumberChoose.name;
+export class NumberChooseInc extends Component {
+    static displayName = NumberChooseInc.name;
     static orNum = 1
     constructor() {
         super()
@@ -11,7 +11,7 @@ export class NumberChoose extends Component {
         this.getButton()
     }
     async getButton() {
-        const btnArr = await fetch("numberchoose/49")
+        const btnArr = await fetch("numberchoose/inc/49")
         const arrJSon = await btnArr.json()
         this.setState({ buttonArray: arrJSon, loading: false })
     }
@@ -25,7 +25,7 @@ export class NumberChoose extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : NumberChoose.renderTable(this.state.buttonArray)
+            : NumberChooseInc.renderTable(this.state.buttonArray)
         return (
             <div>
                 <h1>Choose the number from smallest to the biggest</h1>
@@ -51,13 +51,13 @@ class ButtonCell extends Component {
         this.order=props.order
     }
     clicked(){
-        if(this.order==NumberChoose.orNum) NumberChoose.orNum++
+        if(this.order==NumberChooseInc.orNum) NumberChooseInc.orNum++
         console.log(this.order)
-        console.log(NumberChoose.orNum)
+        console.log(NumberChooseInc.orNum)
         this.forceUpdate()
     }
     isHide(){
-        if(this.order<NumberChoose.orNum) return true;
+        if(this.order<NumberChooseInc.orNum) return true;
         else return false
     }
     render() {

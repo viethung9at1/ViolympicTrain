@@ -1,7 +1,7 @@
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
-import { NumberChoose } from "./components/NumberChoose";
+import { NumberChoose, NumberChooseInc } from "./components/NumberChooseInc";
 import {Login} from "./components/Login"
 const AppRoutes = [
   {
@@ -17,8 +17,8 @@ const AppRoutes = [
     element: <FetchData />
   },
   {
-    path:"/number-choose",
-    element: <NumberChoose />
+    path:"/number-choose-inc",
+    element: <NumberChooseInc />
   },
   {
     path:"/login",

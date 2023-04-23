@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace ViolympicTest;
 [ApiController]
 public class NumberChooseController:ControllerBase{
-    [Route("[controller]/{numOfButton}")]
+    [Route("[controller]/inc/{numOfButton}")]
     [HttpGet]
-    public IEnumerable<NumberChoose> Get(int numOfButton){
+    public IEnumerable<NumberChoose> GetInc(int numOfButton){
         int [] dataAsInt=new int [numOfButton];
         Random rd=new Random();
         for(int i=0;i<dataAsInt.Length;i++){
@@ -24,4 +24,5 @@ public class NumberChooseController:ControllerBase{
         }).ToArray();
         return numChooseArr;
     }
+    
 }
