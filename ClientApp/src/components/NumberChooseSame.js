@@ -1,82 +1,100 @@
-import React, { Component, useState } from "react";
-import { Button } from "reactstrap";
-import { ReactDOM } from "react";
+import React, { Component, useState  } from "react";
 import "../css/format.css"
+import Button from 'react-bootstrap/Button';
 export class NumberChooseSame extends Component {
-    static displayName = NumberChooseSame.name
-    static hideList = []
+    static displayName = NumberChooseSame.name;
     constructor() {
         super()
         this.state = { buttonArray: [], loading: true }
-        this.btnArr = this.state.buttonArray
     }
     componentDidMount() {
         this.getButton()
     }
+    static hideList = []
     async getButton() {
         const btnArr = await fetch("numberchoose/same/64")
-        const arrJson = await btnArr.json()
-        this.setState({ buttonArray: arrJson, loading: false })
-        this.btnArr = arrJson
+        const arrJSon = await btnArr.json()
+        this.setState({ buttonArray: arrJSon, loading: false })
+    }
+    static renderTable(btnArr) {
+        return (
+            <div className="table">
+                <ButtonTable btnArray={btnArr} />
+            </div>
+        )
     }
     render() {
-        let content = this.state.loading ? "Loading" : <ButtonArray data={this.state.buttonArray} />
-        return content
+        let contents = this.state.loading
+            ? <p><em>Loading...</em></p>
+            : NumberChooseSame.renderTable(this.state.buttonArray)
+        return (
+            <div>
+                <h1>Choose the tiles with same value, pair by pair</h1>
+                {contents}
+            </div>
+        )
     }
 }
-function ButtonArray({ data }) {
-    let [update, setUpdate] = useState(false)
-    let countClick = 0
-    let val1, val2, id1, id2
-    function onBtnClick(value, index) {
-        countClick++
-        if (countClick == 1) {
-            val1 = value
-            id1 = index
-        }
-        else {
-            val2 = value
-            id2 = index
-            if (val1 == val2) {
-                NumberChooseSame.hideList.push(id1)
-                NumberChooseSame.hideList.push(id2)
-                countClick = 0
-                setUpdate(!update)
+function ButtonRow({ rowArray, onBtnClick, choosing }) {
+    return (
+        <tr>
+            {
+                rowArray.map(row =>
+                    <td><ButtonCell data={row} onBtnClick={(id, value) => onBtnClick(id, value)} choosing={choosing} /></td>)
             }
+        </tr>
+    )
+}
+class ButtonCell extends Component {
+    constructor(props) {
+        super(props)
+        this.data = props.data
+        this.choosing = props.choosing
+        this.onBtnClick = props.onBtnClick
+    }
+    render() {
+        return (
+            <Button className="same-choose-cell" onClick={() => this.onBtnClick(this.data.id, this.data.value)} >{NumberChooseSame.hideList.includes(this.data.id) ? "" : this.data.text}</Button>
+        )
+    }
+}
+function ButtonTable({ btnArray }) {
+    let cnt = Math.sqrt(btnArray.length)
+    let rowArr = []
+    let [hideList, setHideList] = useState([])
+    let [choosing, setChoosing] = useState(-1)
+    let id1, val1, id2, val2, cntClick = 0
+    function clickTest(id, value) {
+        cntClick++
+        if (cntClick == 1) {
+            id1 = id
+            val1 = value
+            setChoosing(id1)
+        }
+        if (cntClick == 2) {
+            id2 = id
+            val2 = value
+            if (val1 == val2 && id1 != id2) {
+                setHideList(hideList.push(id2))
+                setHideList(hideList.push(id1))
+                NumberChooseSame.hideList = hideList.slice(0, hideList.length)
+            }
+            setChoosing(-1)
+            cntClick = 0
         }
     }
-    let btnArr = []
-    let btnPerRow = Math.sqrt(data.length)
-    for (let i = 0; i < btnPerRow; i++) {
-        btnArr.push(data.slice(i * btnPerRow, (i + 1) * btnPerRow))
+    for (let i = 0; i < cnt; i++) {
+        rowArr.push(btnArray.slice(i * cnt, i * cnt + cnt))
     }
-    let content = (
+    return (
         <div>
-            <table className="table">
+            <h5>Choosing cell {choosing}</h5>
+            <table>
                 {
-                    btnArr.map(row => <ButtonRow data={row} onBtnClick={onBtnClick} hideList={NumberChooseSame.hideList} />)
+                    rowArr.map(row =>
+                        <ButtonRow rowArray={row} onBtnClick={(id, value) => clickTest(id, value)} choosing={choosing} />)
                 }
             </table>
         </div>
     )
-    return content
-}
-function ButtonRow({ data, onBtnClick, hideList }) {
-    return (
-        <tr>{
-            data.map(cell =>
-                <td colSpan={2}><NumberButton onBtnClick={onBtnClick} data={cell} hide={hideList.includes(cell.id)} /></td>)}
-        </tr>
-    )
-}
-class NumberButton extends Component {
-    constructor(props) {
-        super()
-        this.onBtnClick = props.onBtnClick
-        this.data = props.data
-        this.hide = props.hide
-    }
-    render() {
-        return <button className="same-choose-cell" onClick={this.onBtnClick(this.data.value, this.data.id)}>{this.hide ? "" : this.data.text}</button>
-    }
 }
