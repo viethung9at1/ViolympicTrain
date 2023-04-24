@@ -10,10 +10,14 @@ export default function ChooseFunction() {
     const goToIncChoose = () => {
         navigate("/number-choose-inc")
     }
+    const goToCalculate = () => {
+        navigate("/calculate-com")
+    }
     return (
         <div className="choose-function-div">         
            <div> <Button onClick={goToSameChoose} className="choose-function-button">Choose the same number in tiles</Button> </div>
            <div><Button onClick={goToIncChoose} className="choose-function-button">Choose the tiles follow increase order</Button> </div>
+           <div><Button onClick={goToCalculate} className="choose-function-button">Calculate</Button> </div>
         </div>
     )
 }

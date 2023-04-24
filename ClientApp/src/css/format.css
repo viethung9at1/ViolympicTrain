@@ -29,9 +29,23 @@
     padding: 10px;
     left: 50%;
     transform: translate(-50%, 0);
+    align-content: center;
 }
 .same-choose-cell{
     width: 150px;
     height: 70px;
     text-align: center;
+}
+.calculate-div{
+    display: flex;
+    flex-direction: row;
+    border-style: dotted;
+    border: 2;
+    background-color:violet;
+    justify-content: center;
+}
+.calculate-component{
+    width: 150px;
+    margin-left: 50px;
+    
 }

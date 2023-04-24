@@ -5,6 +5,7 @@ import {  NumberChooseInc } from "./components/NumberChooseInc";
 import {Login} from "./components/Login"
 import { NumberChooseSame } from "./components/NumberChooseSame";
 import ChooseFunction from "./components/ChooseFunction"
+import Calculate from "./components/Calculate";
 const AppRoutes = [
   {
     index: true,
@@ -33,6 +34,10 @@ const AppRoutes = [
   {
     path:"/choose-function",
     element: <ChooseFunction />
+  },
+  {
+    path:"/calculate-com",
+    element: <Calculate />
   }
 ];
 
