@@ -3,6 +3,7 @@ import "../css/format.css"
 import Button from 'react-bootstrap/Button';
 export class NumberChooseSame extends Component {
     static displayName = NumberChooseSame.name;
+    static choosing
     constructor() {
         super()
         this.state = { buttonArray: [], loading: true }
@@ -35,12 +36,12 @@ export class NumberChooseSame extends Component {
         )
     }
 }
-function ButtonRow({ rowArray, onBtnClick, choosing }) {
+function ButtonRow({ rowArray, onBtnClick }) {
     return (
         <tr>
             {
                 rowArray.map(row =>
-                    <td><ButtonCell data={row} onBtnClick={(id, value) => onBtnClick(id, value)} choosing={choosing} /></td>)
+                    <td><ButtonCell data={row} onBtnClick={(id, value) => onBtnClick(id, value)} /></td>)
             }
         </tr>
     )
@@ -92,7 +93,7 @@ function ButtonTable({ btnArray }) {
             <table>
                 {
                     rowArr.map(row =>
-                        <ButtonRow rowArray={row} onBtnClick={(id, value) => clickTest(id, value)} choosing={choosing} />)
+                        <ButtonRow rowArray={row} onBtnClick={(id, value) => clickTest(id, value)} />)
                 }
             </table>
         </div>

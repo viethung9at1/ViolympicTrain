@@ -42,7 +42,7 @@ export class NavMenu extends Component {
                 <NavLink tag={Link} className="text-dark" to="/login">Login</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={Link} className="text-dark" to="/number-choose-same">Choose same number</NavLink>
+                <NavLink tag={Link} className="text-dark" to="/choose-function">Choose function</NavLink>
               </NavItem>
             </ul>
           </Collapse>

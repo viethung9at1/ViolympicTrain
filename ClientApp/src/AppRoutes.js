@@ -1,9 +1,10 @@
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
-import { NumberChoose, NumberChooseInc } from "./components/NumberChooseInc";
+import {  NumberChooseInc } from "./components/NumberChooseInc";
 import {Login} from "./components/Login"
 import { NumberChooseSame } from "./components/NumberChooseSame";
+import ChooseFunction from "./components/ChooseFunction"
 const AppRoutes = [
   {
     index: true,
@@ -28,6 +29,10 @@ const AppRoutes = [
   {
     path:"/number-choose-same",
     element: <NumberChooseSame />
+  },
+  {
+    path:"/choose-function",
+    element: <ChooseFunction />
   }
 ];
 

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Input } from 'reactstrap';
 import Button from 'react-bootstrap/Button';
 import "../css/format.css"
-import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-import { NumberChooseInc } from './NumberChooseInc';
-import { Link } from 'react-router-dom';
+import ChooseFunction from './ChooseFunction';
 export class Login extends Component {
   static displayName = Login.name;
   constructor(props) {
@@ -49,7 +47,7 @@ export class Login extends Component {
   }
   render() {
     let contents = this.state.loginSucess ? (
-      <NumberChooseInc />
+      <ChooseFunction />
     ) : (
       <form onSubmit={this.onSubmitData}>
         <div>

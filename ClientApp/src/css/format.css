@@ -9,13 +9,29 @@
     height: 40px;
     text-align: center;
 }
-.login{
+
+.login {
     width: 100%;
     text-align: center;
 }
-.same-choose-cell{
-    width: 100px;
-    height: 60px;
-    text-align: center;
+
+.choose-function-button {
+    width: 300px;
+    margin-top: 20px;
+
 }
 
+.choose-function-div {
+    border: 5px solid;
+    position: absolute;
+    top: 40%;
+    transform: translate(0, -70%);
+    padding: 10px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+.same-choose-cell{
+    width: 150px;
+    height: 70px;
+    text-align: center;
+}
