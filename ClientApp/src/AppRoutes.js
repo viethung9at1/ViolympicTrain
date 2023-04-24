@@ -3,6 +3,7 @@ import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { NumberChoose, NumberChooseInc } from "./components/NumberChooseInc";
 import {Login} from "./components/Login"
+import { NumberChooseSame } from "./components/NumberChooseSame";
 const AppRoutes = [
   {
     index: true,
@@ -23,6 +24,10 @@ const AppRoutes = [
   {
     path:"/login",
     element: <Login />
+  },
+  {
+    path:"/number-choose-same",
+    element: <NumberChooseSame />
   }
 ];
 

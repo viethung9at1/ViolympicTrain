@@ -18,7 +18,7 @@ export class NumberChooseInc extends Component {
     static renderTable(btnArr) {
         return (
             <div className="table">
-                <ButtonTable btnArray={btnArr} orderNumberToHide={this.orNum} />
+                <ButtonTable btnArray={btnArr} />
             </div>
         )
     }

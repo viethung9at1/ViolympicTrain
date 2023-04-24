@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import "../css/format.css"
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import { NumberChooseInc } from './NumberChooseInc';
+import { Link } from 'react-router-dom';
 export class Login extends Component {
   static displayName = Login.name;
   constructor(props) {
